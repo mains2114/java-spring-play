@@ -1,0 +1,12 @@
+server:
+  port: 8088
+
+spring:
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: always
+
+debug: false
+
