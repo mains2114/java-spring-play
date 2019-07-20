@@ -1,3 +1,4 @@
+debug: false
 server:
   port: 8088
 
@@ -7,8 +8,15 @@ spring:
   output:
     ansi:
       enabled: always
-
-debug: false
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: mysql
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=PRC
+    username: root
+    password:
 
 rolling:
   start: 2019-01-13 13:00:00
