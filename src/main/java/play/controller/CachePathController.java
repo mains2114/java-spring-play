@@ -16,7 +16,7 @@ import play.domain.DbTableRepository;
 import play.domain.entity.CachePath;
 
 @RestController
-@RequestMapping("/entity/apiServer")
+@RequestMapping("/entity/cachePath")
 public class CachePathController {
 
     @Resource

@@ -16,7 +16,7 @@ import play.domain.DbTableRepository;
 import play.domain.entity.DbTable;
 
 @RestController
-@RequestMapping("/entity/apiServer")
+@RequestMapping("/entity/dbTable")
 public class DbTableController {
 
     @Resource

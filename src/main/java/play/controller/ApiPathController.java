@@ -1,6 +1,7 @@
 package play.controller;
 
 import javax.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import play.domain.ApiPathRepository;
 import play.domain.entity.ApiPath;
 
+@Slf4j
 @RestController
 @RequestMapping("/entity/apiPath/")
 public class ApiPathController {

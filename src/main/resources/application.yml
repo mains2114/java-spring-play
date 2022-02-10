@@ -11,12 +11,16 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     database: mysql
+    database-platform: org.hibernate.dialect.SQLiteDialect
+    generate-ddl: false
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=PRC
-    username: root
-    password:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:application.db
+#    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=PRC
+#    username: root
+#    password: 1234
 
 rolling:
   start: 2019-01-13 13:00:00
