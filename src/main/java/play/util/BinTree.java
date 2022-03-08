@@ -1,9 +1,11 @@
 package play.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.TreeMap;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -15,13 +17,37 @@ import lombok.extern.slf4j.Slf4j;
 public class BinTree {
 
     @Data
-    @AllArgsConstructor
     public static class Node {
 
         private int val;
         private Node left;
         private Node right;
+        private Node parent;
+
+        Node(int val) {
+            this.val = val;
+        }
+
+        Node(int val, Node left, Node right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
+
+        Node(int val, Node parent) {
+            this.val = val;
+            this.parent = parent;
+        }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+            "val=" + val +
+            ", left=" + left +
+            ", right=" + right +
+            '}';
     }
+}
 
     public static void preOrder(BinTree.Node root, List<Integer> result) {
         if (root == null) {
@@ -101,7 +127,7 @@ public class BinTree {
         }
     }
 
-    private static void levelOrder(Node root, List<Integer> result) {
+    public static void levelOrder(Node root, List<Integer> result) {
         Queue<Node> queue = new LinkedList<>();
         queue.offer(root);
         while (!queue.isEmpty()) {
@@ -122,11 +148,48 @@ public class BinTree {
         }
     }
 
-    public static void main(String[] args) {
-        test();
+    public static void insert(Node root, int val) {
+        if (root == null) {
+            return;
+        }
+
+        Node t = root;
+        Node parent;
+        do {
+            parent = t;
+            if (val < t.getVal()) {
+                t = t.getLeft();
+            } else {
+                t = t.getRight();
+            }
+        } while (t != null);
+
+        Node e = new Node(val, parent);
+        if (val < parent.getVal()) {
+            parent.setLeft(e);
+        } else {
+            parent.setRight(e);
+        }
     }
 
-    public static void test() {
+    public static void main(String[] args) {
+//        testOrder();
+        testInsert();
+    }
+
+    private static void testInsert() {
+        Node root = new Node(3);
+        insert(root, 1);
+        insert(root, 2);
+        insert(root, 4);
+        insert(root, 5);
+        log.info("tree = {}", root);
+        List<Integer> result = new ArrayList<>();
+        inOrderStack(root, result);
+        log.info("inOrder = {}", result);
+    }
+
+    private static void testOrder() {
         Node n1 = new Node(1, null, null);
         Node n2 = new Node(2, null, null);
         Node n3 = new Node(3, null, null);
